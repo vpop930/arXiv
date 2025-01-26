@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">arXiv</string>
+    <string name="welcome">Bienvenido a arXiv.</string>
+    <string name="credit_activity_button_text">Ir a CreditActivity</string>
+    <string name="credits_text">estás usando la versión 1 de arXiv. Esta aplicación sirve para mostrar los papers de los distintos campos del conocimiento.</string>
+</resources>
