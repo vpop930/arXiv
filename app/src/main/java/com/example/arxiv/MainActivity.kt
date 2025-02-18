@@ -19,8 +19,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     // Método con las funcionalidad de los botones.
     override fun onClick(v: View?) {
-        // Dependiendo de qué botón se pulse, tendrá una funcionalida u otra.
+        // Dependiendo de qué botón se pulse, tendrá una funcionalidad u otra.
         when (v?.id) {
+            // Botón para dirigir al usuario a la pantalla de la lista de los artículos.
+            R.id.loginActivityButton -> {
+                // Guardar el usuario introducido en la caja de texto.
+                val username = findViewById<EditText>(R.id.usernameEditText).text.toString()
+
+                // Verificar si no el usuario está vacío.
+                if (username.isNotEmpty()) {
+                    // Crear el intent para cambiar de pantalla.
+                    val intent = Intent(this, ListActivity::class.java).apply {
+                        // Añadir el extra del usuario para usarlo.
+                        putExtra("username", username)
+                    }
+
+                    // Empezar la actividad.
+                    startActivity(intent)
+                } else {
+                    // Mostrar al usuario un aviso de que el usuario no puede estar vacío.
+                    Toast.makeText(
+                        applicationContext,
+                        "El usuario no puede estar vacío",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+
             // Botón para dirigir al usuario a la pantalla de los créditos.
             R.id.creditActivityButton -> {
                 // Guardar el usuario introducido en la caja de texto.
