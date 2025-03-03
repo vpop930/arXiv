@@ -1,4 +1,4 @@
-package com.example.arxiv
+package com.example.arxiv.main
 
 import android.content.Intent
 import android.net.Uri
@@ -8,13 +8,33 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
+import com.example.arxiv.R
+import com.example.arxiv.data.User
+import com.example.arxiv.data.UserDatabase
+import com.example.arxiv.data.UserRepository
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+    // Crear conexión a la base de datos.
+    private var db: UserDatabase? = null
+    private var repository: UserRepository? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        db = Room.databaseBuilder(this, UserDatabase::class.java, "arxiv_db").allowMainThreadQueries().build()
+        repository = UserRepository(db!!.dao)
+
         setContentView(R.layout.activity_main)
+    }
+
+    private fun getUsername() : String {
+        return findViewById<EditText>(R.id.usernameEditText).text.toString()
+    }
+
+    private fun saveUser(user: User) {
+        repository?.insertUser(user)
     }
 
     // Método con las funcionalidad de los botones.
@@ -24,12 +44,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             // Botón para dirigir al usuario a la pantalla de la lista de los artículos.
             R.id.loginActivityButton -> {
                 // Guardar el usuario introducido en la caja de texto.
-                val username = findViewById<EditText>(R.id.usernameEditText).text.toString()
+                val username = getUsername()
+
+                saveUser(User(username = username))
 
                 // Verificar si no el usuario está vacío.
                 if (username.isNotEmpty()) {
                     // Crear el intent para cambiar de pantalla.
-                    val intent = Intent(this, ListActivity::class.java).apply {
+                    val intent = Intent(this, ArticleCRUD::class.java).apply {
                         // Añadir el extra del usuario para usarlo.
                         putExtra("username", username)
                     }

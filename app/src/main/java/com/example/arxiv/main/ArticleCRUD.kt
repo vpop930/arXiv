@@ -1,12 +1,11 @@
-package com.example.arxiv
+package com.example.arxiv.main
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.arxiv.R
 
-class ListActivity  : AppCompatActivity() {
+class ArticleCRUD  : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

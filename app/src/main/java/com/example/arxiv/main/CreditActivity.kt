@@ -1,4 +1,4 @@
-package com.example.arxiv
+package com.example.arxiv.main
 
 import android.os.Bundle
 import android.view.animation.Animation
@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.arxiv.R
 
 class CreditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
