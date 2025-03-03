@@ -27,6 +27,11 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        compose = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -41,9 +46,17 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
+    val composeBom = platform("androidx.compose:compose-bom:2025.02.00")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    implementation("androidx.compose.material:material")
+
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
+
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)

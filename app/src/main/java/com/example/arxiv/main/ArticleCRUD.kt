@@ -5,11 +5,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.arxiv.R
 
-class ArticleCRUD  : AppCompatActivity() {
+class ArticleCRUD : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        setContentView(R.layout.list_activity)
+        setContentView(R.layout.article_crud)
     }
+
+
 }

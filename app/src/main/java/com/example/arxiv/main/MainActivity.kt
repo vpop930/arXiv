@@ -23,13 +23,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        db = Room.databaseBuilder(this, UserDatabase::class.java, "arxiv_db").allowMainThreadQueries().build()
+        db = Room.databaseBuilder(this, UserDatabase::class.java, "arxiv_db")
+            .allowMainThreadQueries().build()
         repository = UserRepository(db!!.dao)
 
         setContentView(R.layout.activity_main)
     }
 
-    private fun getUsername() : String {
+    private fun getUsername(): String {
         return findViewById<EditText>(R.id.usernameEditText).text.toString()
     }
 
@@ -99,7 +100,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 // Crear el intent.
                 val intent = Intent(Intent.ACTION_VIEW)
                 // Introducir la URI con el asunto 'Consulta de la app arXiv' a mi email (vpop930@g.educaand.es).
-                val data = Uri.parse("mailto:?subject='Consulta de la app arXiv'&to=vpop930@g.educaand.es")
+                val data =
+                    Uri.parse("mailto:?subject='Consulta de la app arXiv'&to=vpop930@g.educaand.es")
                 // Introducir la URI al intent.
                 intent.setData(data)
 
